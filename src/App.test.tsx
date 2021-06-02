@@ -21,7 +21,9 @@ test("make sure login success", async () => {
     <Formik initialValues={{ username: "", password: "" }} onSubmit={mock}>
       {({ isSubmitting }) => (
         <Form>
-          <Field label="Username" name="username" data-testid="usernameInput"/>
+          <Field label="Username"
+           name="username" 
+           data-testid="usernameInput"/>
           <Field
             label="Password"
             name="password"
@@ -61,3 +63,147 @@ test("make sure login success", async () => {
   });
 
 });
+test("make sure login success", async () => {
+  const mock = jest.fn();
+  const { debug, getByTestId, getByText } = render(
+    <Formik initialValues={{ username: "", password: "" }} onSubmit={mock}>
+      {({ isSubmitting }) => (
+        <Form>
+          <Field label="Username"
+           name="username" 
+           data-testid="usernameInput"/>
+          <Field
+            label="Password"
+            name="password"
+            type="password"
+            data-testid="passwordInput"
+          />
+          <Button
+            fullWidth
+            type="submit"
+            variant="outlined"
+            className="sidebar__tweet"
+          >
+            Đăng nhập
+          </Button>
+        </Form>
+      )}
+    </Formik>
+  );
+
+  const usernameInput = await waitFor(() => getByTestId('usernameInput'))
+  const passwordInput = await waitFor(() => getByTestId('passwordInput'))
+  const submitButton = await waitFor(() => getByText("Đăng nhập")) 
+
+  await act(async () => {
+    fireEvent.change(usernameInput, { target: { value: "longbi" } });
+    fireEvent.change(passwordInput, { target: { value: "123" } });
+  });
+
+  await waitFor(async () => {
+    fireEvent.click(submitButton);
+  });
+
+  await waitFor(() => {
+    expect(mock).toBeCalled();
+    expect(mock.mock.calls[0][0].username).toBe('longbi');
+    expect(mock.mock.calls[0][0].password).toBe('123');
+  });
+
+});
+// test("make sure login password fail ", async () => {
+//   const mock = jest.fn();
+//   const { debug, getByTestId, getByText } = render(
+//     <Formik initialValues={{ username: "", password: "" }} onSubmit={mock}>
+//       {({ isSubmitting }) => (
+//         <Form>
+//           <Field label="Username"
+//            name="username" 
+//            data-testid="usernameInput"/>
+//           <Field
+//             label="Password"
+//             name="password"
+//             type="password"
+//             data-testid="passwordInput"
+//           />
+//           <Button
+//             fullWidth
+//             type="submit"
+//             variant="outlined"
+//             className="sidebar__tweet"
+//           >
+//             Đăng nhập
+//           </Button>
+//         </Form>
+//       )}
+//     </Formik>
+//   );
+
+//   const usernameInput = await waitFor(() => getByTestId('usernameInput'))
+//   const passwordInput = await waitFor(() => getByTestId('passwordInput'))
+//   const submitButton = await waitFor(() => getByText("Đăng nhập")) 
+
+//   await act(async () => {
+//     fireEvent.change(usernameInput, { target: { value: "longbi" } });
+//     fireEvent.change(passwordInput, { target: { value: "12" } });
+//   });
+
+//   await waitFor(async () => {
+//     fireEvent.click(submitButton);
+//   });
+
+//   await waitFor(() => {
+//     expect(mock).toBeCalled();
+//     expect(mock.mock.calls[0][0].username).toBe('longbi');
+//     expect(mock.mock.calls[0][0].password).toBe('123');
+//   });
+
+// });
+// test("make sure login user fail", async () => {
+//   const mock = jest.fn();
+//   const { debug, getByTestId, getByText } = render(
+//     <Formik initialValues={{ username: "", password: "" }} onSubmit={mock}>
+//       {({ isSubmitting }) => (
+//         <Form>
+//           <Field label="Username"
+//            name="username" 
+//            data-testid="usernameInput"/>
+//           <Field
+//             label="Password"
+//             name="password"
+//             type="password"
+//             data-testid="passwordInput"
+//           />
+//           <Button
+//             fullWidth
+//             type="submit"
+//             variant="outlined"
+//             className="sidebar__tweet"
+//           >
+//             Đăng nhập
+//           </Button>
+//         </Form>
+//       )}
+//     </Formik>
+//   );
+
+//   const usernameInput = await waitFor(() => getByTestId('usernameInput'))
+//   const passwordInput = await waitFor(() => getByTestId('passwordInput'))
+//   const submitButton = await waitFor(() => getByText("Đăng nhập")) 
+
+//   await act(async () => {
+//     fireEvent.change(usernameInput, { target: { value: "long" } });
+//     fireEvent.change(passwordInput, { target: { value: "123" } });
+//   });
+
+//   await waitFor(async () => {
+//     fireEvent.click(submitButton);
+//   });
+
+//   await waitFor(() => {
+//     expect(mock).toBeCalled();
+//     expect(mock.mock.calls[0][0].username).toBe('longbi');
+//     expect(mock.mock.calls[0][0].password).toBe('123');
+//   });
+
+// });
