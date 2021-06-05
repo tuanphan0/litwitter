@@ -111,6 +111,9 @@ test("make sure login success", async () => {
   });
 
 });
+
+
+
 // test("make sure login password fail ", async () => {
 //   const mock = jest.fn();
 //   const { debug, getByTestId, getByText } = render(
@@ -138,27 +141,26 @@ test("make sure login success", async () => {
 //       )}
 //     </Formik>
 //   );
-
 //   const usernameInput = await waitFor(() => getByTestId('usernameInput'))
 //   const passwordInput = await waitFor(() => getByTestId('passwordInput'))
 //   const submitButton = await waitFor(() => getByText("Đăng nhập")) 
-
 //   await act(async () => {
 //     fireEvent.change(usernameInput, { target: { value: "longbi" } });
 //     fireEvent.change(passwordInput, { target: { value: "12" } });
 //   });
-
 //   await waitFor(async () => {
 //     fireEvent.click(submitButton);
 //   });
-
 //   await waitFor(() => {
 //     expect(mock).toBeCalled();
 //     expect(mock.mock.calls[0][0].username).toBe('longbi');
 //     expect(mock.mock.calls[0][0].password).toBe('123');
 //   });
-
 // });
+
+
+
+
 // test("make sure login user fail", async () => {
 //   const mock = jest.fn();
 //   const { debug, getByTestId, getByText } = render(
@@ -186,24 +188,19 @@ test("make sure login success", async () => {
 //       )}
 //     </Formik>
 //   );
-
 //   const usernameInput = await waitFor(() => getByTestId('usernameInput'))
 //   const passwordInput = await waitFor(() => getByTestId('passwordInput'))
 //   const submitButton = await waitFor(() => getByText("Đăng nhập")) 
-
 //   await act(async () => {
 //     fireEvent.change(usernameInput, { target: { value: "long" } });
 //     fireEvent.change(passwordInput, { target: { value: "123" } });
 //   });
-
 //   await waitFor(async () => {
 //     fireEvent.click(submitButton);
 //   });
-
 //   await waitFor(() => {
 //     expect(mock).toBeCalled();
 //     expect(mock.mock.calls[0][0].username).toBe('longbi');
 //     expect(mock.mock.calls[0][0].password).toBe('123');
 //   });
-
 // });
